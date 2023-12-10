@@ -72,8 +72,8 @@ class Menu {
   }
 
   #shuffleMenus(menus) {
-    const indexes = Array.from(menus.keys());
-    const shuffledIndexes = Random.shuffle(indexes);
+    const indexes = Array.from(menus.keys()).map((x) => x + 1);
+    const shuffledIndexes = Random.shuffle(indexes).map((x) => x - 1);
     const shuffledMenu = shuffledIndexes.map((index) => menus[index]);
 
     return shuffledMenu;
