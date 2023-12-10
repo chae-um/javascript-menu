@@ -5,10 +5,10 @@ const OUTPUT_MESSAGE = Object.freeze({
   result: '\n메뉴 추천 결과입니다.\n',
   day: '[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]',
   category(category) {
-    return `[ 카테고리 | ${category}]`;
+    return `[ 카테고리 | ${category} ]`;
   },
   menus(userName, menus) {
-    return `[ ${userName} | ${menus}]`;
+    return `[ ${userName} | ${menus} ]`;
   },
   end: '추천을 완료했습니다.',
 });
