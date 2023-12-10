@@ -34,10 +34,11 @@ describe('Coach 예외 테스트', () => {
       ],
     },
   ])(
-    '`inedible`에 `0`에서 `2`개의 음식이 아니면 에러가 발생한다.',
+    'addInedible 호출시 `inedible`에 `0`에서 `2`개의 음식이 아니면 에러가 발생한다.',
     ({ inedible }) => {
-      // given & when
-      const result = () => Coach.of({ name: '토미', inedible });
+      // given
+      const coach = Coach.of({ name: '토미' });
+      const result = () => coach.addInedible(inedible);
 
       // then
       expect(result).toThrow(Coach.ERROR.invalidInedibleQuantity);

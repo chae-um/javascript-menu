@@ -41,13 +41,9 @@ class Coach {
 
   #inedible = [];
 
-  constructor({ name, inedible }) {
+  constructor({ name }) {
     this.#validateName(name);
     this.#name = name;
-    if (inedible) {
-      this.#validateInedible(inedible);
-      this.#inedible = inedible;
-    }
   }
 
   static of({ name, inedible }) {
@@ -67,6 +63,11 @@ class Coach {
     ) {
       throw new ApplicationError(Coach.ERROR.invalidNameLength);
     }
+  }
+
+  addInedible(inedible) {
+    this.#validateInedible(inedible);
+    this.#inedible = inedible;
   }
 
   #validateInedible(inedible) {

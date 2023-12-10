@@ -31,15 +31,15 @@ describe('코치 테스트', () => {
         Food.of({ name: '탕수육', category: '중식' }),
       ],
     },
-    {
-      inedible: [],
-    },
-  ])('`inedible`에 `0`에서 `2`개의 `Food`를 받는다.', ({ inedible }) => {
+  ])('`addInedible(foods)` 호출시 `inedible`에 `food`를 추가한다.', ({ inedible }) => {
     // given & when
-    const coach = Coach.of({ name: '토미', inedible });
+    const coach = Coach.of({ name: '토미' });
+    coach.addInedible(inedible);
 
     // then
-    expect(coach.info().inedible).toBe(inedible);
+    inedible.forEach((food) => {
+      expect(coach.isInedible(food)).toBe(true);
+    });
   });
 
   it('`addFood(food)` 호출시 `menu`에 `food`를 추가한다.', () => {
@@ -72,7 +72,8 @@ describe('코치 테스트', () => {
     // given
     const food = foodProvider.serve('된장찌개');
     const inedible = foodProvider.serve('쌈밥');
-    const coach = Coach.of({ name: '토미', inedible: [inedible] });
+    const coach = Coach.of({ name: '토미' });
+    coach.addInedible([inedible]);
 
     // when & then
     expect(coach.isInedible(inedible)).toBe(true);

@@ -11,6 +11,18 @@ const InputView = Object.freeze({
 
     return input;
   },
+
+  async readCoaches() {
+    const input = await this.read('코치의 이름을 입력해 주세요. (, 로 구분)');
+
+    return input;
+  },
+
+  async readInedible(coach) {
+    const input = await this.read(`${coach}(이)가 못 먹는 메뉴를 입력해 주세요.`);
+
+    return input;
+  },
 });
 
 export default InputView;

@@ -3,6 +3,7 @@ import FoodProvider from '../FoodProvider/FoodProvider.js';
 import Coach from '../Coach/Coach.js';
 import { isDuplicated, isOutOfRange } from '../../validator/validator.js';
 import ApplicationError from '../../exceptions/ApplicationError.js';
+import ERROR_MESSAGE_GENERATOR from '../../utils/error-message-generator.js';
 
 class Recommend {
   /**
@@ -21,6 +22,14 @@ class Recommend {
    */
   static MAX_COACHES_QUANTITY = 5;
 
+  /**
+   * @readonly
+   */
+  static ERROR = {
+    invalidCoachesQuantity: `${Recommend.MIN_COACHES_QUANTITY}~${Recommend.MAX_COACHES_QUANTITY}명의 코치를 입력해주세요!`,
+    duplicatedCoaches: ERROR_MESSAGE_GENERATOR.duplicated('코치 이름'),
+  };
+
   #coaches = [];
 
   #menuBoard = {};
@@ -38,11 +47,11 @@ class Recommend {
   #validateCoaches(coaches) {
     const { MIN_COACHES_QUANTITY: min, MAX_COACHES_QUANTITY: max } = Recommend;
     if (isOutOfRange(coaches.length, { min, max })) {
-      throw new ApplicationError();
+      throw new ApplicationError(Recommend.ERROR.invalidCoachesQuantity);
     }
     const names = Array.from(coaches, (coach) => coach.info().name);
     if (isDuplicated(names)) {
-      throw new ApplicationError();
+      throw new ApplicationError(Recommend.ERROR.duplicatedCoaches);
     }
   }
 
@@ -103,7 +112,7 @@ class Recommend {
    *  category: string
    * }} param0
    */
-  #addFoodToCoach({ foodProvider, coach, category }) {
+  #addFoodToCoach({ foodProvider = FoodProvider.of(), coach, category }) {
     const food = foodProvider.serveRandomFood(category);
     if (coach.isExistedFood(food) || coach.isInedible(food)) {
       this.#addFoodToCoach(coach, category);
