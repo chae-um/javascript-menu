@@ -37,7 +37,7 @@ class Coach {
 
   #name;
 
-  #menu;
+  #foods = [];
 
   #inedible = [];
 
@@ -81,10 +81,22 @@ class Coach {
     }
   }
 
+  addFood(food) {
+    return this.#foods.push(food);
+  }
+
+  isExistedFood(addedFood) {
+    return this.#foods.some((food) => food === addedFood);
+  }
+
+  isInedible(addedFood) {
+    return this.#inedible.some((food) => food === addedFood);
+  }
+
   info() {
     return {
       name: this.#name,
-      menu: this.#menu,
+      foods: this.#foods,
       inedible: this.#inedible,
     };
   }
