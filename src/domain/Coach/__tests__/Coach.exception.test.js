@@ -10,7 +10,7 @@ describe('Coach 예외 테스트', () => {
       const result = () => Coach.of({ name });
 
       // then
-      expect(result).toThrow();
+      expect(result).toThrow(Coach.ERROR.notStringName);
     },
   );
 
@@ -21,7 +21,7 @@ describe('Coach 예외 테스트', () => {
       const result = () => Coach.of({ name });
 
       // then
-      expect(result).toThrow();
+      expect(result).toThrow(Coach.ERROR.invalidNameLength);
     },
   );
 
@@ -40,7 +40,7 @@ describe('Coach 예외 테스트', () => {
       const result = () => Coach.of({ name: '토미', inedible });
 
       // then
-      expect(result).toThrow();
+      expect(result).toThrow(Coach.ERROR.invalidInedibleQuantity);
     },
   );
 });
