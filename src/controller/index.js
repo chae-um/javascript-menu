@@ -13,7 +13,23 @@ class MenuController {
 
   async run() {
     this.#outputView.printStart();
+    const userNames = await this.#handleError(() => this.#readUserNames());
+  }
+
+  async #readUserNames() {
     const userNames = await this.#inputView.readUserNames();
+
+    return userNames;
+  }
+
+  async #handleError(callback) {
+    try {
+      return await callback();
+    } catch ({ message }) {
+      this.#outputView.print(message);
+
+      return this.#handleError(callback);
+    }
   }
 }
 
