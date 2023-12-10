@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import App from '../src/App';
+import App from '../src/App.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -60,16 +60,18 @@ describe('점심 메뉴 테스트', () => {
       mockShuffles([
         // 구구
         [2, Array.from({ length: 9 }, sequenced)],
+        [9, Array.from({ length: 9 }, sequenced)],
+
         [7, Array.from({ length: 9 }, sequenced)],
         [1, Array.from({ length: 9 }, sequenced)],
-        [4, Array.from({ length: 9 }, sequenced)],
-        [2, Array.from({ length: 9 }, sequenced)],
 
-        //제임스
-        [9, Array.from({ length: 9 }, sequenced)],
         [1, Array.from({ length: 9 }, sequenced)],
         [5, Array.from({ length: 9 }, sequenced)],
+
+        [4, Array.from({ length: 9 }, sequenced)],
         [5, Array.from({ length: 9 }, sequenced)],
+
+        [2, Array.from({ length: 9 }, sequenced)],
         [4, Array.from({ length: 9 }, sequenced)],
       ]);
 
@@ -87,8 +89,8 @@ describe('점심 메뉴 테스트', () => {
             '[ 구구 | 김치찌개 | 스파게티 | 규동 | 짜장면 | 카오 팟 ]',
             '[ 제임스 | 제육볶음 | 라자냐 | 가츠동 | 짬뽕 | 파인애플 볶음밥 ]',
             '추천을 완료했습니다.',
-          ].join('')
-        )
+          ].join(''),
+        ),
       );
     });
   });
