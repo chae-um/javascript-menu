@@ -1,4 +1,4 @@
-import { SYSTEM } from '../../../../constants/System.js';
+import SYMBOL from '../../../../constants/Symbol.js';
 import isValidDelimiter from './index.js';
 
 describe('is-valid-delimiter', () => {
@@ -8,7 +8,7 @@ describe('is-valid-delimiter', () => {
 
     // when
     // then
-    expect(isValidDelimiter(input, SYSTEM.delimiter)).toBe(true);
+    expect(isValidDelimiter(input, SYMBOL.delimiter)).toBe(true);
   });
 
   test('의도한 구분자를 단 하나도 입력하지 않았을 때 false 리턴', () => {
@@ -17,6 +17,6 @@ describe('is-valid-delimiter', () => {
 
     // when
     // then
-    expect(isValidDelimiter(input, SYSTEM.delimiter)).toBe(false);
+    expect(isValidDelimiter(input, SYMBOL.delimiter)).toBe(false);
   });
 });
