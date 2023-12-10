@@ -59,7 +59,7 @@ export default class RecommandationMachine {
         const randomIndex = Random.shuffle(
           Array.from({ length: size }, (_, idx) => idx)
         )[0];
-        const menu = FOOD_CATEGORY[category][randomIndex];
+        const menu = FOOD_CATEGORY[category][randomIndex - 1];
 
         if (!dislikeMenus.includes(menu)) {
           selectedMenus.add(menu);
