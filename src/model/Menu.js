@@ -10,7 +10,7 @@ class Menu {
   static CATEGORY = { 1: '일식', 2: '한식', 3: '중식', 4: '아시안', 5: '양식' };
 
   getRandomCategory(randomCategory = []) {
-    while (randomCategory.length < 6) {
+    while (randomCategory.length < 5) {
       const randomNumber = RandomGenerator.run();
       const category = Menu.CATEGORY[randomNumber];
 
