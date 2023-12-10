@@ -1,7 +1,15 @@
 import { Random } from '@woowacourse/mission-utils';
 import Food from '../Food/Food.js';
+import ApplicationError from '../../exceptions/ApplicationError.js';
 
 class FoodProvider {
+  /**
+   * @readonly
+   */
+  static ERROR = {
+    menuDoesNotExist: '존재하지 않는 메뉴입니다!',
+  };
+
   /**
    * @readonly
    */
@@ -85,6 +93,9 @@ class FoodProvider {
   }
 
   serve(name) {
+    if (!this.#foods[name]) {
+      throw new ApplicationError(FoodProvider.ERROR.menuDoesNotExist);
+    }
     return this.#foods[name];
   }
 
