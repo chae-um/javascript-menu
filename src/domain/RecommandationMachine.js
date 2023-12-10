@@ -30,30 +30,11 @@ export default class RecommandationMachine {
   #isAvailableCategory(dislikeMenus, category) {
     const categories = Object.values(FOOD_CATEGORY);
 
-    for (const category of categories) {
-      if (!this.#isImpossibleCategory(dislikeMenus, category)) {
-        return false;
-      }
-    }
-
     if (!this.#isDuplicationAvailable(category)) {
       return false;
     }
 
     return true;
-  }
-
-  #isImpossibleCategory(dislikeMenus, category) {
-    const dislikeMenuSet = new Set(dislikeMenus.flat(Infinity));
-    const amount = category.reduce((acc, curr) => {
-      if (dislikeMenuSet.has(curr)) {
-        return acc + 1;
-      }
-
-      return acc;
-    }, 0);
-
-    return amount < category.length;
   }
 
   #isDuplicationAvailable(category) {
@@ -72,8 +53,9 @@ export default class RecommandationMachine {
     const selectedMenus = new Set();
 
     this.#categories.forEach((category, idx) => {
+      const size = FOOD_CATEGORY[category].length;
+
       while (selectedMenus.size < idx + 1) {
-        const size = FOOD_CATEGORY[category].length;
         const randomIndex = Random.shuffle(
           Array.from({ length: size }, (_, idx) => idx)
         )[0];
