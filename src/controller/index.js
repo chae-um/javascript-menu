@@ -1,4 +1,5 @@
-import { validateEmptyString, validators } from '../utils/validators/index.js';
+import Menu from '../model/Menu.js';
+import { validators } from '../utils/validators/index.js';
 import isEmptyString from '../utils/validators/src/is-empty-string/index.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
@@ -8,9 +9,12 @@ class MenuController {
 
   #outputView;
 
+  #model;
+
   constructor() {
     this.#inputView = InputView;
     this.#outputView = OutputView;
+    this.#model = new Menu();
   }
 
   async run() {
@@ -19,6 +23,13 @@ class MenuController {
     const nonEdibleMenuData = await this.#handleError(() =>
       this.#getNonEdibleMenuData(userNames.split(',')),
     );
+    const randomCategory = this.#model.getRandomCategory();
+    const recommendedMenu = this.#model.recommendMenu(
+      randomCategory,
+      userNames.split(','),
+      nonEdibleMenuData,
+    );
+    console.log(recommendedMenu);
   }
 
   async #readUserNames() {
