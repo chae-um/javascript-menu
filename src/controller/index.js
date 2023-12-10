@@ -1,3 +1,4 @@
+import { validators } from '../utils/validators/index.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
@@ -18,6 +19,8 @@ class MenuController {
 
   async #readUserNames() {
     const userNames = await this.#inputView.readUserNames();
+
+    validators.checkUserNames(userNames);
 
     return userNames;
   }
