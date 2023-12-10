@@ -1,5 +1,6 @@
 import { ERROR_MESSAGE } from '../../constants/Messages.js';
 import { handleValidationError } from '../error/index.js';
+import NonEdibleMenu from './NonEdibleMenu.js';
 import UserNames from './UserNames.js';
 
 import isEmptyString from './src/is-empty-string/index.js';
@@ -16,5 +17,9 @@ export function validateEmptyString(input) {
 export const validators = {
   checkUserNames(input) {
     UserNames.check(input);
+  },
+
+  checkNonEdibleMenu(input) {
+    NonEdibleMenu.check(input);
   },
 };
