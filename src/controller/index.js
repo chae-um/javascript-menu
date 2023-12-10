@@ -29,7 +29,8 @@ class MenuController {
       userNames.split(','),
       nonEdibleMenuData,
     );
-    console.log(recommendedMenu);
+    const result = this.#model.convertMenu(recommendedMenu, userNames.split(','));
+    this.#outputView.printResult(randomCategory, userNames.split(','), result);
   }
 
   async #readUserNames() {

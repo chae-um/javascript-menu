@@ -37,6 +37,18 @@ class Menu {
     }, {});
   }
 
+  convertMenu(menuData, userNames) {
+    const userData = {};
+    userNames.forEach((userName, index) => {
+      userData[userName] = [];
+      Object.values(menuData).forEach((data) => {
+        userData[userName].push(data.menu[index]);
+      });
+    });
+
+    return userData;
+  }
+
   #getValidMenu(category, userName, nonEdibleMenu) {
     const MixedMenus = this.#getMixedMenus(category);
     const menu = MixedMenus[0];
