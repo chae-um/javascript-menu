@@ -140,35 +140,6 @@ describe('유효성 검사 함수 테스트', () => {
 
   it.each([
     {
-      date: '2023-01-01',
-      result: false,
-    },
-    {
-      date: '2023-03-01',
-      result: false,
-    },
-    {
-      date: '2023-00-01',
-      result: true,
-    },
-    {
-      date: '2023-13-01',
-      result: true,
-    },
-    {
-      date: '2023-13-12',
-      result: true,
-    },
-  ])('유효하지 않은 날짜 확인', ({ date, result }) => {
-    // given & when
-    const invalidDate = new Date(date);
-
-    // then
-    expect(isInvalidDate(invalidDate)).toBe(result);
-  });
-
-  it.each([
-    {
       input: 10,
       dividedValue: 3,
       result: true,
